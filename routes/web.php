@@ -15,4 +15,4 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
-//Route::post('/saaraketha_shopify/recurring_orders_app','OrderController@reorder');
+Route::post('/saaraketha/recurring_orders','OrderController@reorder');
