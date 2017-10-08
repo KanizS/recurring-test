@@ -15,11 +15,4 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
-//Route::get('/test', 'OrderController@tag');
-
-//Route::post('/shopify/webhook-tagger','OrderController@webhook_tagger');
-
-Route::post('/saarai_shopify/recurring_orders','OrderController@reorder');
-
-//Route::post('/shopify/reorder','OrderController@reorder');
-//Route::post('/shopify/reorder','ReorderController@reorder');
+Route::post('/saaraketha_shopify/recurring_orders_app','OrderController@reorder');
