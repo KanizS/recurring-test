@@ -19,5 +19,7 @@ Route::get('/test', 'OrderController@tag');
 
 Route::post('/shopify/webhook-tagger','OrderController@webhook_tagger');
 
+Route::post('http://localhost:8081','OrderController@reorder');
+
 //Route::post('/shopify/reorder','OrderController@reorder');
 //Route::post('/shopify/reorder','ReorderController@reorder');
