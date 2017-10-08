@@ -15,9 +15,9 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
-Route::get('/test', 'OrderController@tag');
+//Route::get('/test', 'OrderController@tag');
 
-Route::post('/shopify/webhook-tagger','OrderController@webhook_tagger');
+//Route::post('/shopify/webhook-tagger','OrderController@webhook_tagger');
 
 Route::post('http://localhost:8081','OrderController@reorder');
 
