@@ -19,7 +19,7 @@ Route::get('/', function(){
 
 //Route::post('/shopify/webhook-tagger','OrderController@webhook_tagger');
 
-Route::post('/saarai-shopify/recurring-orders','OrderController@reorder');
+Route::post('/saarai_shopify/recurring_orders','OrderController@reorder');
 
 //Route::post('/shopify/reorder','OrderController@reorder');
 //Route::post('/shopify/reorder','ReorderController@reorder');
