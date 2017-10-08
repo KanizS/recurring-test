@@ -82,7 +82,7 @@ file_put_contents("php://stderr", "####################\n");
 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
 				
 						//calculate cut off date
-						$_cut_off_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
+						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
 						file_put_contents("php://stderr", "========\n");
 					
