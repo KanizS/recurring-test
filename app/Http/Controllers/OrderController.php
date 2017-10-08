@@ -82,7 +82,7 @@ file_put_contents("php://stderr", "####################\n");
 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
 				
 						//calculate cut off date
-						$_cut_off_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " - 2 day"));
+						$_cut_off_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
 						file_put_contents("php://stderr", "========\n");
 					
@@ -98,7 +98,7 @@ file_put_contents("php://stderr", "####################\n");
 							'current_recurring_iteration'=> $i+1,
 							'recurring_frequency' => $_recurring_duration,
 							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
-							//'cut_off_date' =>$_cut_off_date_value, //set time later  //add later after test
+							'cut_off_date' =>$_cut_off_date_value, //set time later 
 							//$_area_name =>$_area_value   //add later after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
