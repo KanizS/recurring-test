@@ -105,11 +105,12 @@ file_put_contents("php://stderr", "####################\n");
 						$order_name = $request['$order_name'];
 						$order_name_suffix = (string)$_recurring_duration;
 						$order_name = $order_name."R".$order_name_suffix;
+						file_put_contents("php://stderr", "$order_name\n");
 				
 				//set order
 						$orderdata = array(
 							'order' => array(
-							'order_name' => $order_name,
+							'name' => $order_name,
 							'email' => $request['email'],
 							'line_items' => $line_items,
 							'gateway' => $gateway,  //check with requirements
