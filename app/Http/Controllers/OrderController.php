@@ -101,9 +101,15 @@ file_put_contents("php://stderr", "####################\n");
 						$billing_address = $request['billing_address'];
 						$shipping_address=$request['shipping_address'];
 				
+						//set order name
+						$order_name = $request['$order_name'];
+						$order_name_suffix = (string)$_recurring_duration;
+						$order_name = $order_name."R".$order_name_suffix;
+				
 				//set order
 						$orderdata = array(
 							'order' => array(
+							'order_name' => $order_name,
 							'email' => $request['email'],
 							'line_items' => $line_items,
 							'gateway' => $gateway,  //check with requirements
@@ -146,7 +152,7 @@ file_put_contents("php://stderr", "####################\n");
     //create client and post data
 	$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
 	$client = new Client();
-	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order,'timeout'=>1]);
+	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
 }
 
