@@ -33,7 +33,8 @@ file_put_contents("php://stderr", "####################\n");
 					$_recurring_duration_months_name=$_name;
 					file_put_contents("php://stderr", "$_recurring_duration_months_name\n");
 					//$_recurring_duration_months_value = (string)$request['note_attributes'][$r]['value'];
-					$_recurring_duration_months_value = (int)$request['note_attributes'][$r]['value'];	
+					$_recurring_duration_months_value = (int)$request['note_attributes'][$r]['value'];
+					file_put_contents("php://stderr", "$_recurring_duration_months_value\n");
 					break;
 				 case 'streamthing_delivery_date':
 					$_streamthing_delivery_date_name = $_name;
