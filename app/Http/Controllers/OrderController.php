@@ -75,7 +75,11 @@ file_put_contents("php://stderr", "####################\n");
 													
 						//calculate delivery date
 						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
-									
+						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
+						file_put_contents("php://stderr", "******\n");
+						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
+						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
+				
 						//calculate cut off date
 						$_cut_off_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " - 2 day"));
 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
