@@ -40,15 +40,15 @@ file_put_contents("php://stderr", "####################\n");
 					$_streamthing_delivery_date_name = $_name;
 					$_streamthing_delivery_date_value=date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
 				  	break;
-				 case 'cut_off_date':
-					$_cut_off_date_name =$_name; //format this later and bind
-					//$_cut_off_date_value = date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
-				  	//file_put_contents("php://stderr", "$_cut_off_date_value\n");
-					break;
-				 case 'area':
-					$_area_name = $_name;
-					$_area_value= (string)$request['note_attributes'][$r]['value'];
-					break;
+// 				 case 'cut_off_date':     //add later after test
+// 					$_cut_off_date_name =$_name; //format this later and bind
+// 					//$_cut_off_date_value = date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
+// 				  	//file_put_contents("php://stderr", "$_cut_off_date_value\n");
+// 					break;
+// 				 case 'area': //add later after test
+// 					$_area_name = $_name;
+// 					$_area_value= (string)$request['note_attributes'][$r]['value'];
+// 					break;
 				default:
 					break;
 				}
@@ -87,11 +87,11 @@ file_put_contents("php://stderr", "####################\n");
 						file_put_contents("php://stderr", "========\n");
 					
 						$note_attributes = array(
-							$_include_gift_wrapping_name => $_include_gift_wrapping_value,
+							//$_include_gift_wrapping_name => $_include_gift_wrapping_value, //add later after test
 							'created_as_recurring' => true,
 							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
-							'cut_off_date' =>$_cut_off_date_value, //set time later
-							$_area_name =>$_area_value
+							//'cut_off_date' =>$_cut_off_date_value, //set time later  //add later after test
+							//$_area_name =>$_area_value   //add later after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
 						$contact_email = $request['contact_email'];
