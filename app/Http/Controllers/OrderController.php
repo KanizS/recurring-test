@@ -86,9 +86,17 @@ file_put_contents("php://stderr", "####################\n");
 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
 						file_put_contents("php://stderr", "========\n");
 					
+						//root order details
+						$root_order_id = $request['id'];
+						$root_order_name = $request['name'];
+				
 						$note_attributes = array(
 							//$_include_gift_wrapping_name => $_include_gift_wrapping_value, //add later after test
 							'created_as_recurring' => true,
+							'root_order_name' => $root_order_name,
+							'root_order_id' => $root_order_id,
+							'current_recurring_iteration'=> $i,
+							'recurring_duration' => $_recurring_duration,
 							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
 							//'cut_off_date' =>$_cut_off_date_value, //set time later  //add later after test
 							//$_area_name =>$_area_value   //add later after test
@@ -103,7 +111,7 @@ file_put_contents("php://stderr", "####################\n");
 				
 						//set order name
 						$order_name = $request['name'];
-						$order_name_suffix = (string)$_recurring_duration;
+						$order_name_suffix = (string)$i;
 						$order_name = $order_name."R".$order_name_suffix;
 						file_put_contents("php://stderr", "$order_name\n");
 				
