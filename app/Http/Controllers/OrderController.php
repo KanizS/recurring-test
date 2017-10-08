@@ -9,60 +9,6 @@ class OrderController extends Controller
 
 {   
 
-public function verify_webhook($data, $hmac_header){
-
-    $calculated_hmac = base64_encode(hash_hmac('sha256', $data, "039debc65f8d0525541d9b01c95b3b6475059390eae4410f959333ea0dcca66d", true));
-    return hash_equals($hmac_header, $calculated_hmac);
-}
-
-public function tag(){    	
-
-$client = new Client();
-$res = $client->request('PUT', 'https://3e0ea0b497d2c61c9c65772d128b0ac1:42a3bd866aa6debd4a2c172606a883ff@saaraketha-organics.myshopify.com/admin/orders/4990583621.json', [ 
-		'form_params' => ['order' => [
-		      'id' => 4990583621,
-		      'tags' => rand()
-		    ]]
-]);
-echo $res->getStatusCode();
-dd(json_decode((string)$res->getBody(),true));
-}
-
-public function webhook_tagger(Request $request){
-
-//$header 	= $request->header()["x-shopify-hmac-sha256"][0];
-// $data   	= file_get_contents('php://input');
-	// $verified 	= $this->verify_webhook($data, $header);
-
-	// if($verified){
-
-		$id  		=  (string)$request['id'] ;
-		$url 		=  'https://3d7b2f6a83f57bc4d0abb14205942ef5:b04081ebe8a2849ed05f0decc4606e1e@saaraketha-organics.myshopify.com/admin/orders/'.$id.'.json';
-		$date 		= $request['note_attributes'][0]['value'];
-		$client 	= new Client();
-		$res 		= $client->request('PUT', $url , [ 
-								'form_params' => 
-										[
-											'order' => [
-											'id' => $id,
-											'tags' => ["forced created date changed ", "second" ],
-											 'created_at' => '2017-09-14T23:16:27-11:00',
-											 'attribute' => 'new one'                 
-											]
-										 ]
-
-								 ]
-								   );
-		dd(json_decode((string)$res->getBody(),true));
-
-    //     return response('Order was succesfully tagged', 200);
-    // }
-
-    // else{
-    // 	return response('Untrusted Source. Webhook could not be verified ', 403);
-    // }
-}
-
 
 public function reorder(Request $request){
 file_put_contents("php://stderr", "####################\n");
@@ -193,7 +139,7 @@ file_put_contents("php://stderr", "####################\n");
 
  private function set_reorder($order){
     //create client and post data
-	$url =(string)('https://3d7b2f6a83f57bc4d0abb14205942ef5:b04081ebe8a2849ed05f0decc4606e1e@saaraketha-organics.myshopify.com/admin/orders.json');
+	$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
 	$client = new Client();
 	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
