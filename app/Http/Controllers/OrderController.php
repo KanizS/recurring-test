@@ -10,12 +10,13 @@ file_put_contents("php://stderr", "####################\n");
    
 	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
+		$_subscribe_order_name ='';
+		$_subscribe_order_value=''; 
 	
 	for($r=0;$r<$note_attribute_count;$r++){
 	
 		$_name = $request['note_attributes'][$r]['name'];
-		$_subscribe_order_name ='';
-		$_subscribe_order_value=''; 
+
 		switch ($_name){
 				 case 'include_gift_wrapping':
 					$_include_gift_wrapping_name = $_name;
