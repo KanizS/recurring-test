@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }
-
+file_put_contents("php://stderr", "12345\n");
         return $next($request);
     }
 }
