@@ -149,6 +149,8 @@ file_put_contents("php://stderr", "####################\n");
 		}
 
 }
+	$request['note_attributes'] =null;
+	file_put_contents("php://stderr", "(string)$request['note_attributes'][1]['value']\n");
 	//$request->delete();
 	file_put_contents("php://stderr", "####################\n");
 	return response()->json(["message"=>"test"]);
