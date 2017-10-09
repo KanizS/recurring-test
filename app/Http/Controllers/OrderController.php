@@ -151,6 +151,7 @@ file_put_contents("php://stderr", "####################\n");
 }
 	//$request->delete();
 	file_put_contents("php://stderr", "####################\n");
+	return response()->json(["message"=>"test"]);
 	
 }
 
