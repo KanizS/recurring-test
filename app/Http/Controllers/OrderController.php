@@ -9,7 +9,7 @@ class OrderController extends Controller
 
 {   
 
-public function reorder(Request $request){
+private function reorder(Request $request){
 
 file_put_contents("php://stderr", "####################\n");
        //================optimize later using threads and synchronizatioon ====================================
