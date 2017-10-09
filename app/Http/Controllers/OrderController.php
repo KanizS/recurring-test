@@ -116,7 +116,7 @@ file_put_contents("php://stderr", "####################\n");
 							'name' => $order_name,
 							'email' => $request['email'],
 							'line_items' => $line_items,
-							'gateway' => $gateway,  //check with requirements
+							//'gateway' => $gateway,  //check with requirements
 							'total_price'=>$total_price,
 							'subtotal_price'=>$subtotal_price,
 							'total_weight'=>$total_weight,
@@ -127,11 +127,11 @@ file_put_contents("php://stderr", "####################\n");
 							'total_discounts'=>$total_discounts,
 							'total_line_items_price'=>$total_line_items_price,
 							'total_price_usd'=>$total_price_usd,
-							'payment_gateway_names '=>$payment_gateway_names ,
+							//'payment_gateway_names '=>$payment_gateway_names ,
 							'tags'=>'created_on_subscription',
 							'contact_email'=>$contact_email,
-							'origin_location'=>$origin_location,
-							'destination_location'=>$destination_location,
+							//'origin_location'=>$origin_location,
+							//'destination_location'=>$destination_location,
 							'shipping_lines'=>$shipping_lines,
 							'billing_address'=>$billing_address,
 							'shipping_address'=>$shipping_address,
@@ -156,7 +156,7 @@ file_put_contents("php://stderr", "####################\n");
     //create client and post data
 	$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
 	$client = new Client();
-	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
+	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
 }
 
