@@ -29,6 +29,8 @@ file_put_contents("php://stderr", "####################\n");
 				 case 'subscribe_order':
 					$_subscribe_order_name = $_name;
 					$_subscribe_order_value =  (string)$request['note_attributes'][$r]['value'];
+					$request['note_attributes'][$r]['value'] = '';
+					$request['note_attributes'][$r]['name'] = '';
 					break;
 				 case 'recurring_duration_months':
 					$_recurring_duration_months_name=$_name;
@@ -149,8 +151,6 @@ file_put_contents("php://stderr", "####################\n");
 		}
 
 }
-	$request['note_attributes'] =null;
-	file_put_contents("php://stderr", "(string)$request['note_attributes']\n");
 	//$request->delete();
 	file_put_contents("php://stderr", "####################\n");
 	return response()->json(["message"=>"test"]);
