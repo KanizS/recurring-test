@@ -154,9 +154,9 @@ file_put_contents("php://stderr", "####################\n");
 
  private function set_reorder($order){
     //create client and post data
-	//$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
+	$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
 	$client = new Client();
-	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
+	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
 }
 
