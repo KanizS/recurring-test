@@ -94,7 +94,7 @@ file_put_contents("php://stderr", "####################\n");
 							'recurring_frequency' => $_recurring_duration,
 							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
 							'cut_off_date' =>$_cut_off_date_value, 
-							$_area_name =>$_area_value  //remove after test
+							//$_area_name =>$_area_value  //remove after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
 						$contact_email = $request['contact_email'];
