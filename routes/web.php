@@ -15,4 +15,4 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
-Route::post('/saaraketha_organics/recurring_orders_app','OrderController@reorder');
+Route::post('/saaraketha-organics/recurring-orders','OrderController@reorder');
