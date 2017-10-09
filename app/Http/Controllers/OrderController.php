@@ -13,7 +13,8 @@ class OrderController extends Controller
 public function reorder(Request $request){
 file_put_contents("php://stderr", "####################\n");
        //================optimize later using threads and synchronizatioon ====================================
-    //traverse through note attributes
+   
+	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
 	
 	for($r=0;$r<$note_attribute_count;$r++){
