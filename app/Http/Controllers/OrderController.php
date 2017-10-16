@@ -157,9 +157,9 @@ file_put_contents("php://stderr", "####################\n");
 			return ['success' => true];
 		}
 }
-	else{
-	return ['success' => true];
-	}
+// 	else{
+// 	return ['success' => true];
+// 	}
 	//$request->delete();
 	file_put_contents("php://stderr", "####################\n");
 	return response()->json(["message"=>"test"]);
