@@ -48,15 +48,16 @@ file_put_contents("php://stderr", "####################\n");
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
-	if( $order_request_name < 1138){//2651){
-		$_subscribe_order_name = '';
-		$_subscribe_order_value='';
-		file_put_contents("php://stderr", "$_subscribe_order_name\n");
-		file_put_contents("php://stderr", "$_subscribe_order_value\n");
-	}
+// 	if( $order_request_name < 1138){//2651){
+// 		$_subscribe_order_name = '';
+// 		$_subscribe_order_value='';
+// 		file_put_contents("php://stderr", "$_subscribe_order_name\n");
+// 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
+// 	}
 	
-	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
-	else if($_subscribe_order_name=='subscribe_order'){
+// 	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
+// 	else 
+		if($_subscribe_order_name=='subscribe_order'){
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
 			for($i=0;$i<$_recurring_duration;$i++){
