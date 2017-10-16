@@ -55,8 +55,8 @@ file_put_contents("php://stderr", "####################\n");
 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
 	}
 	
-	file_put_contents("php://stderr", "$_subscribe_order_name\n");
-	if($_subscribe_order_name=='subscribe_order'){
+	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
+	else if($_subscribe_order_name=='subscribe_order'){
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
 			for($i=0;$i<$_recurring_duration;$i++){
@@ -152,7 +152,13 @@ file_put_contents("php://stderr", "####################\n");
 			}
 				
 		}
+		else{
+			return ['success' => true];
+		}
 }
+	else{
+	return ['success' => true];
+	}
 	//$request->delete();
 	file_put_contents("php://stderr", "####################\n");
 	return response()->json(["message"=>"test"]);
@@ -160,8 +166,9 @@ file_put_contents("php://stderr", "####################\n");
 }
  private function set_reorder($order){
     //create client and post data
-	$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json');
-	$client = new Client();
+	//$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json');
+	$url =(string)('https://d69dc791fbc4e0f64edea9ec3ae422ea:3f2099e0135c61c8554819d7d294d125@saarai-test.myshopify.com/admin/orders.json');
+	 $client = new Client();
 	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
 }
