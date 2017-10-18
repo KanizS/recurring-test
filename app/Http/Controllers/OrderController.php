@@ -2,12 +2,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+
 class OrderController extends Controller
 {   
+	
 public function reorder(Request $request){
 file_put_contents("php://stderr", "####################\n");
-       //================optimize later using threads and synchronizatioon ====================================
-   
+      
 	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
 	
@@ -23,6 +24,7 @@ file_put_contents("php://stderr", "####################\n");
 	$_area_name='';
 	$_area_value='';
 	
+	//traverse through note attributes
 	for($r=0;$r<$note_attribute_count;$r++){
 		$_name = $request['note_attributes'][$r]['name'];
 		
@@ -51,6 +53,7 @@ file_put_contents("php://stderr", "####################\n");
 					break;
 				}
 		}
+	
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
@@ -62,11 +65,14 @@ file_put_contents("php://stderr", "####################\n");
 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
 	}
 	
+	//create recurring orders if note attribute set
 	if($_subscribe_order_name=='subscribe_order'){
 		
+		//loop over to create recurring orders if subscribe order value set true
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
 			
+			//loop over for recurring duration
 			for($i=0;$i<$_recurring_duration;$i++){
 				
 				//edit order json
@@ -83,11 +89,11 @@ file_put_contents("php://stderr", "####################\n");
 						$total_line_items_price = $request['total_line_items_price'];
 						$total_price_usd = $request['total_price_usd'];
 													
-// 						//calculate delivery date
+// 						//calculate delivery date //add after test
 // 						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
 // 						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
 				
-						//calculate cut off date
+						//calculate cut off date //add after test
 // 						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
 					
 						//root order details
@@ -100,9 +106,9 @@ file_put_contents("php://stderr", "####################\n");
 							'root_order_id' => $root_order_id,
 							'current_recurring_iteration'=> $i+1,
 							'recurring_frequency' => $_recurring_duration,
-							//$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
-							//'cut_off_date' =>$_cut_off_date_value, 
-							//$_area_name =>$_area_value  //remove after test
+							//$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value, //add after test
+							//'cut_off_date' =>$_cut_off_date_value, //add after test
+							//$_area_name =>$_area_value  //add after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
 						$contact_email = $request['contact_email'];
@@ -157,14 +163,14 @@ file_put_contents("php://stderr", "####################\n");
 		file_put_contents("php://stderr", "outer else\n");
 	
 	}//end of else
-	//$request->delete();
+	
 	file_put_contents("php://stderr", "end of code\n");
 		
 }
 	
  private function set_reorder($order){
     //create client and post data
-	//$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json');
+	//$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json'); //add after test
 	$url =(string)('https://087d5b65d796c168b3991f22bb931df5:74048127bf735281c6e3fdd2d2dfb336@test-saarai.myshopify.com/admin/orders.json');
 	 $client = new Client();
 	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
