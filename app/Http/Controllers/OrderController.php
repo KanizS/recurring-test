@@ -10,9 +10,10 @@ file_put_contents("php://stderr", "####################\n");
    
 	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
-	
+	file_put_contents("php://stderr", "before note loop\n");
 	for($r=0;$r<$note_attribute_count;$r++){
-	
+	file_put_contents("php://stderr", "inside note loop\n");
+		file_put_contents("php://stderr", "$r\n");
 		$_name = $request['note_attributes'][$r]['name'];
 		
 		switch ($_name){
