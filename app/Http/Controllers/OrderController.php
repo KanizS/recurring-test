@@ -37,9 +37,7 @@ file_put_contents("php://stderr", "####################\n");
 					break;
 				 case 'recurring_duration_months':
 					$_recurring_duration_months_name=$_name;
-					file_put_contents("php://stderr", "$_recurring_duration_months_name\n");
 					$_recurring_duration_months_value = (int)$request['note_attributes'][$r]['value'];
-					file_put_contents("php://stderr", "$_recurring_duration_months_value\n");
 					break;
 				 case 'streamthing_delivery_date':
 					$_streamthing_delivery_date_name = $_name;
@@ -59,17 +57,17 @@ file_put_contents("php://stderr", "####################\n");
 	if( $order_request_name < 1029){
 		$_subscribe_order_name = '';
 		$_subscribe_order_value='';
+		file_put_contents("php://stderr", "loopback occu\n");
 		file_put_contents("php://stderr", "$_subscribe_order_name\n");
 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
 	}
 	
-	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
 	if($_subscribe_order_name=='subscribe_order'){
-		file_put_contents("php://stderr", "$_subscribe_order_name\n");
+		
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
+			
 			for($i=0;$i<$_recurring_duration;$i++){
-				file_put_contents("php://stderr", "$i\n");
 				
 				//edit order json
 						//items from previous order
@@ -87,15 +85,10 @@ file_put_contents("php://stderr", "####################\n");
 													
 // 						//calculate delivery date
 // 						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
-// 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
-// 						file_put_contents("php://stderr", "******\n");
 // 						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
-// 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
 				
 						//calculate cut off date
 // 						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
-// 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
-// 						file_put_contents("php://stderr", "========\n");
 					
 						//root order details
 						$root_order_id = $request['id'];
@@ -124,8 +117,7 @@ file_put_contents("php://stderr", "####################\n");
 						$order_iteration = $i+1;
 						$order_name_suffix = (string)$order_iteration;
 						$order_name = $order_name."R".$order_name_suffix;
-						file_put_contents("php://stderr", "$order_name\n");
-				
+										
 				//set order
 						$orderdata = array(
 							'order' => array(
@@ -151,23 +143,22 @@ file_put_contents("php://stderr", "####################\n");
 							'note_attributes' => $note_attributes
 							));
 						$order = json_encode ($orderdata);
-						$logcontent = "$order\n";
-						file_put_contents("php://stderr", $logcontent);
+						
 					//post  reorder
 						$this -> set_reorder($order);
 			}//end of for loop
 				
 		}// end of if
 		else{
-			file_put_contents("php://stderr", "test\n");
+			file_put_contents("php://stderr", "inner else\n");
 		}//end of else
 	}// end of if
 	else{
-		file_put_contents("php://stderr", "123\n");
+		file_put_contents("php://stderr", "outer else\n");
 	
 	}//end of else
 	//$request->delete();
-	file_put_contents("php://stderr", "456\n");
+	file_put_contents("php://stderr", "end of code\n");
 		
 }
 	
