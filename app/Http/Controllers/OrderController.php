@@ -10,7 +10,18 @@ file_put_contents("php://stderr", "####################\n");
    
 	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
+	
+	//initialize note atributes
 	$_subscribe_order_name ='';
+	$_include_gift_wrapping_name='';
+	$_include_gift_wrapping_value='';
+	$_subscribe_order_value='';
+	$_recurring_duration_months_name='';
+	$_recurring_duration_months_value=0;
+	$_streamthing_delivery_date_name='';
+	$_streamthing_delivery_date_value='';
+	$_area_name='';
+	$_area_value='';
 	
 	for($r=0;$r<$note_attribute_count;$r++){
 		$_name = $request['note_attributes'][$r]['name'];
@@ -23,7 +34,6 @@ file_put_contents("php://stderr", "####################\n");
 				 case 'subscribe_order':
 					$_subscribe_order_name = $_name;
 					$_subscribe_order_value =  (string)$request['note_attributes'][$r]['value'];
-					
 					break;
 				 case 'recurring_duration_months':
 					$_recurring_duration_months_name=$_name;
@@ -148,11 +158,14 @@ file_put_contents("php://stderr", "####################\n");
 			}//end of for loop
 				
 		}// end of if
-}// end of if
+		else{
+			file_put_contents("php://stderr", "test\n");
+		}//end of else
+	}// end of if
 	else{
 		file_put_contents("php://stderr", "123\n");
 	
-	}
+	}//end of else
 	//$request->delete();
 	file_put_contents("php://stderr", "456\n");
 		
