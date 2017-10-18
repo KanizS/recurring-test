@@ -23,13 +23,11 @@ file_put_contents("php://stderr", "####################\n");
 				 case 'subscribe_order':
 					$_subscribe_order_name = $_name;
 					$_subscribe_order_value =  (string)$request['note_attributes'][$r]['value'];
-					//$request['note_attributes'][$r]['value'] = '';
-					//$request['note_attributes'][$r]['name'] = '';
+					
 					break;
 				 case 'recurring_duration_months':
 					$_recurring_duration_months_name=$_name;
 					file_put_contents("php://stderr", "$_recurring_duration_months_name\n");
-					//$_recurring_duration_months_value = (string)$request['note_attributes'][$r]['value'];
 					$_recurring_duration_months_value = (int)$request['note_attributes'][$r]['value'];
 					file_put_contents("php://stderr", "$_recurring_duration_months_value\n");
 					break;
@@ -37,10 +35,10 @@ file_put_contents("php://stderr", "####################\n");
 					$_streamthing_delivery_date_name = $_name;
 					$_streamthing_delivery_date_value=date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
 				  	break;
-				 case 'area': //add later after test
-					$_area_name = $_name;
-					$_area_value= (string)$request['note_attributes'][$r]['value'];
-					break;
+// 				 case 'area': //add later after test
+// 					$_area_name = $_name;
+// 					$_area_value= (string)$request['note_attributes'][$r]['value'];
+// 					break;
 				default:
 					break;
 				}
@@ -48,16 +46,15 @@ file_put_contents("php://stderr", "####################\n");
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
-// 	if( $order_request_name < 1138){//2651){
-// 		$_subscribe_order_name = '';
-// 		$_subscribe_order_value='';
-// 		file_put_contents("php://stderr", "$_subscribe_order_name\n");
-// 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
-// 	}
+	if( $order_request_name < 1004){
+		$_subscribe_order_name = '';
+		$_subscribe_order_value='';
+		file_put_contents("php://stderr", "$_subscribe_order_name\n");
+		file_put_contents("php://stderr", "$_subscribe_order_value\n");
+	}
 	
-// 	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
-// 	else 
-		if($_subscribe_order_name=='subscribe_order'){
+	file_put_contents("php://stderr", "$_subscribe_order_name\n");
+	if($_subscribe_order_name=='subscribe_order'){
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
 			for($i=0;$i<$_recurring_duration;$i++){
@@ -77,17 +74,17 @@ file_put_contents("php://stderr", "####################\n");
 						$total_line_items_price = $request['total_line_items_price'];
 						$total_price_usd = $request['total_price_usd'];
 													
-						//calculate delivery date
-						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
-						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
-						file_put_contents("php://stderr", "******\n");
-						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
-						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
+// 						//calculate delivery date
+// 						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
+// 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
+// 						file_put_contents("php://stderr", "******\n");
+// 						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
+// 						file_put_contents("php://stderr", "$_streamthing_delivery_date_value\n");
 				
 						//calculate cut off date
-						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
-						file_put_contents("php://stderr", "$_cut_off_date_value\n");
-						file_put_contents("php://stderr", "========\n");
+// 						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
+// 						file_put_contents("php://stderr", "$_cut_off_date_value\n");
+// 						file_put_contents("php://stderr", "========\n");
 					
 						//root order details
 						$root_order_id = $request['id'];
@@ -99,8 +96,8 @@ file_put_contents("php://stderr", "####################\n");
 							'root_order_id' => $root_order_id,
 							'current_recurring_iteration'=> $i+1,
 							'recurring_frequency' => $_recurring_duration,
-							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
-							'cut_off_date' =>$_cut_off_date_value, 
+							//$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value,
+							//'cut_off_date' =>$_cut_off_date_value, 
 							//$_area_name =>$_area_value  //remove after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
@@ -135,11 +132,8 @@ file_put_contents("php://stderr", "####################\n");
 							'total_discounts'=>$total_discounts,
 							'total_line_items_price'=>$total_line_items_price,
 							'total_price_usd'=>$total_price_usd,
-							//'payment_gateway_names '=>$payment_gateway_names ,
 							'tags'=>'created_on_subscription',
 							'contact_email'=>$contact_email,
-							//'origin_location'=>$origin_location,
-							//'destination_location'=>$destination_location,
 							'shipping_lines'=>$shipping_lines,
 							'billing_address'=>$billing_address,
 							'shipping_address'=>$shipping_address,
@@ -150,21 +144,19 @@ file_put_contents("php://stderr", "####################\n");
 						file_put_contents("php://stderr", $logcontent);
 					//post  reorder
 						$this -> set_reorder($order);
-			}
+			}//end of for loop
 				
-		}
-		else{
-			return ['success' => true];
-		}
-}
-// 	else{
-// 	return ['success' => true];
-// 	}
-	//$request->delete();
-	file_put_contents("php://stderr", "####################\n");
-	return response()->json(["message"=>"test"]);
+		}// end of if
+}// end of if
+	else{
+		file_put_contents("php://stderr", "123\n");
 	
+	}
+	//$request->delete();
+	file_put_contents("php://stderr", "456\n");
+		
 }
+	
  private function set_reorder($order){
     //create client and post data
 	//$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json');
@@ -172,9 +164,5 @@ file_put_contents("php://stderr", "####################\n");
 	 $client = new Client();
 	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
+	
 }
-
-
-
-
-
