@@ -10,10 +10,8 @@ file_put_contents("php://stderr", "####################\n");
    
 	//traverse through note attributes
 	$note_attribute_count = (int)count($request['note_attributes']);
-	file_put_contents("php://stderr", "before note loop\n");
+	
 	for($r=0;$r<$note_attribute_count;$r++){
-	file_put_contents("php://stderr", "inside note loop\n");
-		file_put_contents("php://stderr", "$r\n");
 		$_name = $request['note_attributes'][$r]['name'];
 		
 		switch ($_name){
@@ -54,8 +52,9 @@ file_put_contents("php://stderr", "####################\n");
 		file_put_contents("php://stderr", "$_subscribe_order_value\n");
 	}
 	
-	file_put_contents("php://stderr", "$_subscribe_order_name\n");
+	//file_put_contents("php://stderr", "$_subscribe_order_name\n");
 	if($_subscribe_order_name=='subscribe_order'){
+		file_put_contents("php://stderr", "$_subscribe_order_name\n");
 		if($_subscribe_order_value){
 			$_recurring_duration = $_recurring_duration_months_value*4;
 			for($i=0;$i<$_recurring_duration;$i++){
