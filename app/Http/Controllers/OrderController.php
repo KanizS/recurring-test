@@ -12,7 +12,7 @@ public function reorder(Request $request){
 	$json = '["apple","orange","banana","strawberry"]';
 	$ar = json_decode($json);
 	// access first element of $ar array
-	echo $ar[0]; // apple
+	file_put_contents("php://stderr", "$ar\n");
 	
 
 	//$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders/116273315870.json');
