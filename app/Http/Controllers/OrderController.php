@@ -45,10 +45,10 @@ file_put_contents("php://stderr", "####################\n");
 					$_streamthing_delivery_date_name = $_name;
 					$_streamthing_delivery_date_value=date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
 				  	break;
-// 				 case 'area': //add later after test
-// 					$_area_name = $_name;
-// 					$_area_value= (string)$request['note_attributes'][$r]['value'];
-// 					break;
+				 case 'area': //add later after test
+					$_area_name = $_name;
+					$_area_value= (string)$request['note_attributes'][$r]['value'];
+					break;
 				default:
 					break;
 				}
@@ -89,12 +89,12 @@ file_put_contents("php://stderr", "####################\n");
 						$total_line_items_price = $request['total_line_items_price'];
 						$total_price_usd = $request['total_price_usd'];
 													
-// 						//calculate delivery date //add after test
-// 						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
-// 						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
+						//calculate delivery date //add after test
+						$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
+						$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
 				
 						//calculate cut off date //add after test
-// 						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
+						$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
 					
 						//root order details
 						$root_order_id = $request['id'];
@@ -106,9 +106,9 @@ file_put_contents("php://stderr", "####################\n");
 							'root_order_id' => $root_order_id,
 							'current_recurring_iteration'=> $i+1,
 							'recurring_frequency' => $_recurring_duration,
-							//$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value, //add after test
-							//'cut_off_date' =>$_cut_off_date_value, //add after test
-							//$_area_name =>$_area_value  //add after test
+							$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value, //add after test
+							'cut_off_date' =>$_cut_off_date_value, //add after test
+							$_area_name =>$_area_value  //add after test
 							);
 						$payment_gateway_names = $request['payment_gateway_names'];
 						$contact_email = $request['contact_email'];
@@ -170,10 +170,9 @@ file_put_contents("php://stderr", "####################\n");
 	
  private function set_reorder($order){
     //create client and post data
-	//$url =(string)('https://accf0d648fe303e54a665730c8510ce3:e10a8dab1c81ca2dfc1e76a3fb0ebc0c@saaraketha-organics.myshopify.com/admin/orders.json'); //add after test
-	$url =(string)('https://087d5b65d796c168b3991f22bb931df5:74048127bf735281c6e3fdd2d2dfb336@test-saarai.myshopify.com/admin/orders.json');
-	 $client = new Client();
-	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
+	$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders.json');
+	$client = new Client();
+	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
  }
 	
 }
