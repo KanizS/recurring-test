@@ -9,6 +9,7 @@ class OrderController extends Controller
 public function reorder(Request $request){
 	
 file_put_contents("php://stderr", "inside\n");
+	  file_put_contents("php://stderr", "$request\n");
 	$val = $request['id'];
       file_put_contents("php://stderr", "$val\n");
 
