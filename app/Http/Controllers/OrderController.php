@@ -63,7 +63,7 @@ file_put_contents("php://stderr", "####################\n");
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
-	if( $order_request_name < 2700){
+	if( $order_request_name < 2730){
 		$_subscribe_order_name = '';
 		$_subscribe_order_value='';
 		file_put_contents("php://stderr", "loopback occu\n");
