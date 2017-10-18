@@ -6,8 +6,9 @@ use GuzzleHttp\Client;
 class OrderController extends Controller
 {   
 	
-public function reorder(Request $request){
-file_put_contents("php://stderr", "####################\n");
+public function reorder($request){
+	
+file_put_contents("php://stderr", "$request\n");
       
 	
 		
