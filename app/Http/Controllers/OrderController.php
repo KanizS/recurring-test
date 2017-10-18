@@ -11,9 +11,7 @@ public function reorder(Request $request){
 	file_put_contents("php://stderr", "inside\n");
 	//file_put_contents("php://stderr", "$request\n");
 	$arr=json_decode( $_POST['jsonData'] );
-	echo $arr['id'];
-	/* or dump whole array as response to ajax:*/
-	print_r($arr);
+	file_put_contents("php://stderr", "$arr\n");
 
 	//$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders/116273315870.json');
 	//$client = new Client();
