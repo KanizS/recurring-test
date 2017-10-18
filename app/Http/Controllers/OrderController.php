@@ -10,8 +10,7 @@ public function reorder(Request $request){
 	
 	file_put_contents("php://stderr", "inside\n");
 	file_put_contents("php://stderr", "$request\n");
-	$order_id = json_decode($_POST['order_id']);
-	file_put_contents("php://stderr", "$order_id\n");
+	
 
 	//$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders/116273315870.json');
 	//$client = new Client();
