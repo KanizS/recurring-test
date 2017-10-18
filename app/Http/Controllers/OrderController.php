@@ -72,6 +72,7 @@ file_put_contents("php://stderr", "####################\n");
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
+		file_put_contents("php://stderr", "$order_request_name\n");
 	if( $order_request_name < 2794){
 		$_subscribe_order_name = '';
 		$_subscribe_order_value='';
