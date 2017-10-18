@@ -23,6 +23,8 @@ file_put_contents("php://stderr", "####################\n");
 	$_streamthing_delivery_date_value='';
 	$_area_name='';
 	$_area_value='';
+	$_packing_specification_name='';
+	$_packing_specification_value='';
 	
 	//traverse through note attributes
 	for($r=0;$r<$note_attribute_count;$r++){
@@ -45,6 +47,10 @@ file_put_contents("php://stderr", "####################\n");
 					$_streamthing_delivery_date_name = $_name;
 					$_streamthing_delivery_date_value=date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
 				  	break;
+				 case 'packing_specification':
+					$_packing_specification_name = $_name;
+					$_packing_specification_value= (string)$request['note_attributes'][$r]['value'];
+				  	break;
 				 case 'area': //add later after test
 					$_area_name = $_name;
 					$_area_value= (string)$request['note_attributes'][$r]['value'];
@@ -57,7 +63,7 @@ file_put_contents("php://stderr", "####################\n");
 	//prevent looping request of previous orders
 	$order_request_name = $request['name'];
 	$order_request_name = (int)str_replace('#', '', $order_request_name);
-	if( $order_request_name < 2671){
+	if( $order_request_name < 2700){
 		$_subscribe_order_name = '';
 		$_subscribe_order_value='';
 		file_put_contents("php://stderr", "loopback occu\n");
@@ -102,6 +108,7 @@ file_put_contents("php://stderr", "####################\n");
 				
 						$note_attributes = array(
 							'created_as_recurring' => true,
+							'packing_specification'=>$_packing_specification_value,
 							'root_order_name' => $root_order_name,
 							'root_order_id' => $root_order_id,
 							'current_recurring_iteration'=> $i+1,
