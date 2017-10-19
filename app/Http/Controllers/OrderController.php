@@ -218,10 +218,7 @@ private function edit_root_order($root_id){
 	
 private function verify_request($request_tag_data){
 	$tag_array = explode( ',', $request_tag_data ) ;
-
 	$tag_count = (int)count($tag_array);
-	file_put_contents("php://stderr", "$tag_count\n");
-	
 	$tag='';
 	
 	for($x=0;$x<$tag_count;$x++){
@@ -229,12 +226,12 @@ private function verify_request($request_tag_data){
 		$trimmed_tag= trim($tag);
 		file_put_contents("php://stderr", "$tag\n");
 		if($tag == 'Created_Recurring_Orders')
-			return true;
+			return false;
 		else
 			continue;
 	}//end of for loop
-		
-	return false;
+	file_put_contents("php://stderr", "end of verify_request function\n");	
+	return true;
 }
 	
 }
