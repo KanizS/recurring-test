@@ -129,6 +129,40 @@ public function reorder($id){
 				$billing_address = $request['billing_address'];
 				$shipping_address=$request['shipping_address'];
 				
+				//set order name
+				$order_name = $request['name'];
+				$order_iteration = $i+1;
+				$order_name_suffix = (string)$order_iteration;
+				$order_name = $order_name."R".$order_name_suffix;
+				
+			//set order
+				$orderdata = array(
+					'order' => array(
+					'name' => $order_name,
+					'email' => $request['email'],
+					'line_items' => $line_items,
+					'total_price'=>$total_price,
+					'subtotal_price'=>$subtotal_price,
+					'total_weight'=>$total_weight,
+					'total_tax'=>$total_tax,
+					'taxes_included'=>$taxes_included,
+					'currency'=>$currency,
+					'financial_status'=> 'pending',
+					'total_discounts'=>$total_discounts,
+					'total_line_items_price'=>$total_line_items_price,
+					'total_price_usd'=>$total_price_usd,
+					'tags'=>'created_on_subscription',
+					'contact_email'=>$contact_email,
+					'shipping_lines'=>$shipping_lines,
+					'billing_address'=>$billing_address,
+					'shipping_address'=>$shipping_address,
+					'note_attributes' => $note_attributes
+					));
+				
+				$order = json_encode ($orderdata);
+				
+			//post  reorder
+				$this -> set_reorder($order);
 				
 			}//end of for loop
 				
