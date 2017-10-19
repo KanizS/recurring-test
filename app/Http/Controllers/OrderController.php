@@ -217,7 +217,7 @@ private function edit_root_order($root_id){
 }
 	
 private function verify_request($request_data){
-	$type = gettype($request_data);
+	$type = gettype($request_data['tags']);
 	file_put_contents("php://stderr", "$type\n");
 	$tag_count = (int)count($request_data['tags']);
 	file_put_contents("php://stderr", "$tag_count\n");
