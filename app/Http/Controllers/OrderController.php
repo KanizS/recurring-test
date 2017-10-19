@@ -105,6 +105,33 @@ public function reorder($id){
 				$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
 				$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
 
+				//calculate cut off date //add after test
+				$_cut_off_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value . " - 2 day"))." - 12:00 AM";
+
+				//root order details
+				$root_order_id = $request['id'];
+				$root_order_name = $request['name'];
+
+				$note_attributes = array(
+					'created_as_recurring' => true,
+					'packing_specification'=>$_packing_specification_value,
+					'root_order_name' => $root_order_name,
+					'root_order_id' => $root_order_id,
+					'current_recurring_iteration'=> $i+1,
+					'recurring_frequency' => $_recurring_duration,
+					$_streamthing_delivery_date_name=>$_streamthing_delivery_date_value, //add after test
+					'cut_off_date' =>$_cut_off_date_value, //add after test
+					$_area_name =>$_area_value  //add after test
+					);
+				
+				$contact_email = $request['contact_email'];
+				$origin_location = $request['origin_location'];
+				$destination_location = $request['destination_location'];
+				$shipping_lines = $request['shipping_lines'];
+				$billing_address = $request['billing_address'];
+				$shipping_address=$request['shipping_address'];
+				
+				
 			}//end of for loop
 				
 		}// end of if
