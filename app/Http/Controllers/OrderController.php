@@ -201,7 +201,7 @@ public function reorder($id){
 private function edit_root_order($root_id){
 	file_put_contents("php://stderr", "edit_root_order_function\n");
 	$edit_orderdata = array('order' => array('id' => $root_id,
-					    'tags'=>array("test")
+					    'tags'=>array("Created_Recurring_Orders")
 					   )
 			  );
 	$order_data = json_encode ($edit_orderdata);
