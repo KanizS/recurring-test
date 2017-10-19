@@ -177,7 +177,7 @@ public function reorder($id){
 	
 	}//end of else
 		
-	}//end of outer else
+
 	file_put_contents("php://stderr", "end of code\n");
 	
 
