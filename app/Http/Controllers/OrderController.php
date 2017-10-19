@@ -208,7 +208,7 @@ private function edit_root_order($root_id){
 	$edit_url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders/');
 	$edit_url = $url."$root_id".".json";
 	$client = new Client();
-	$RequestResponse = $client->PUT($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $edit_orderdata]);
+	$RequestResponse = $client->put($edit_url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $edit_orderdata]);
 	file_put_contents("php://stderr", "end of function\n");
 }
 	
