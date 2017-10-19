@@ -25,8 +25,8 @@ public function reorder($id){
 	
 	$id_val = json_decode((string)$RequestResponse->getBody(),true);
 	
-	//$note_attribute_count = (int)count($RequestResponse['note_attributes']);
-	file_put_contents("php://stderr", "$id_val\n");	
+	$note_attribute_count = (int)$id_val['order'];
+	file_put_contents("php://stderr", "$note_attribute_count\n");	
 }
 	
  private function set_reorder($order){
