@@ -125,8 +125,6 @@ public function reorder($id){
 					);
 				
 				$contact_email = $request['contact_email'];
-				$origin_location = $request['origin_location'];
-				$destination_location = $request['destination_location'];
 				$shipping_lines = $request['shipping_lines'];
 				$billing_address = $request['billing_address'];
 				$shipping_address=$request['shipping_address'];
