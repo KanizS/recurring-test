@@ -17,15 +17,13 @@ public function reorder($id){
 	$RequestResponse = $client->get($url);
 	$RequestResponse=$RequestResponse->getBody()->getContents();
 	$json_response = json_decode($RequestResponse,true);
-		
-	//get note attributes count
-	$note_attribute_count = (int)count($json_response['order']['note_attributes']);
 	
 	//get inside order element of json
 	$request = $json_response['order'];
-	$note = (int)count($request['note_attributes']);
-	file_put_contents("php://stderr", "$note\n");	
-	
+		
+	//get note attributes count
+	$note_attribute_count = (int)count($request['note_attributes']);
+		
 	//initialize note atributes
 	$_subscribe_order_name ='';
 	$_include_gift_wrapping_name='';
@@ -46,6 +44,39 @@ public function reorder($id){
 	//following process if only tag not in order
 	
 	//traverse through note attributes
+	for($r=0;$r<$note_attribute_count;$r++){
+		$_name = $request['note_attributes'][$r]['name'];
+		
+		switch ($_name){
+				 case 'include_gift_wrapping':
+					$_include_gift_wrapping_name = $_name;
+					$_include_gift_wrapping_value = (string)$request['note_attributes'][$r]['value'];
+					break;
+				 case 'subscribe_order':
+					$_subscribe_order_name = $_name;
+					$_subscribe_order_value =  (string)$request['note_attributes'][$r]['value'];
+					break;
+				 case 'recurring_duration_months':
+					$_recurring_duration_months_name=$_name;
+					$_recurring_duration_months_value = (int)$request['note_attributes'][$r]['value'];
+					break;
+				 case 'streamthing_delivery_date':
+					$_streamthing_delivery_date_name = $_name;
+					$_streamthing_delivery_date_value=date('m/d/Y', strtotime((string)$request['note_attributes'][$r]['value']));
+				  	break;
+				 case 'packing_specification':
+					$_packing_specification_name = $_name;
+					$_packing_specification_value= (string)$request['note_attributes'][$r]['value'];
+				  	break;
+				 case 'area': //add later after test
+					$_area_name = $_name;
+					$_area_value= (string)$request['note_attributes'][$r]['value'];
+					break;
+				default:
+					break;
+				}
+	}//end of for loop
+	file_put_contents("php://stderr", "$_subscribe_order_name\n");
 	
 	file_put_contents("php://stderr", "done\n");	
 	
