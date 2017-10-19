@@ -42,16 +42,17 @@ public function reorder($id){
 	//prevent placing recurring orders more than once
 	//edit the root order to place tag
 	//following process if only tag not in order
-	$res = $client->request('PUT', $url , [ 
-		'form_params' => 
-				[
-					'order' => [
-					'id' => $id,
-					'tags' => ["Created Recurring Orders"]  
-					]
-				 ]
-		 ]
-	   );
+// 	$res = $client->request('PUT', $url , [ 
+// 		'form_params' => 
+// 				[
+// 					'order' => [
+// 					'id' => $id,
+// 					'tags' => ["Created Recurring Orders"]  
+// 					]
+// 				 ]
+// 		 ]
+// 	   );
+	$this -> edit_root_order($id);
 	
 	//traverse through note attributes
 	for($r=0;$r<$note_attribute_count;$r++){
@@ -196,4 +197,17 @@ public function reorder($id){
 	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
 	
 }
+
+private function edit_root_order($root_id){
+	$edit_orderdata = array('order' => array('id' => $root_id,
+					    'tags'=>array("test")
+					   )
+			  );
+	
+	$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders.json');
+	$client = new Client();
+	$RequestResponse = $client->PUT($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $edit_orderdata]);
+	
+}
+	
 }
