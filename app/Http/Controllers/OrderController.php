@@ -219,11 +219,14 @@ private function edit_root_order($root_id){
 private function verify_request($request_data){
 	
 	$tag_count = (int)count($request_data['tags']);
-
+	file_put_contents("php://stderr", "$tag_count\n");
+	$tags_ = $request_data['tags'];
+	file_put_contents("php://stderr", "$tags_\n");
 	$tag='';
 	
 	for($x=0;$x<$tag_count;$x++){
 		$tag = 	$request_data['tags'][$x];
+		//$json_response = json_decode($RequestResponse,true);
 		file_put_contents("php://stderr", "$tag\n");
 		if($tag == 'Created_Recurring_Orders')
 			return true;
