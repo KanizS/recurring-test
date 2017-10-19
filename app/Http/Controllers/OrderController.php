@@ -15,7 +15,8 @@ public function reorder($id){
 	$url = $url."$id".".json";
 	$client = new Client();
 	$RequestResponse = $client->get($url);
-	$RequestResponse= $RequestResponse->getBody();
+	
+	$RequestResponse= json_decode($RequestResponse->getBody(), true);
 	file_put_contents("php://stderr", "$RequestResponse\n");
 	file_put_contents("php://stderr", "done\n");	
 	
