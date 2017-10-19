@@ -87,10 +87,24 @@ public function reorder($id){
 			//loop over for recurring duration
 			for($i=0;$i<$_recurring_duration;$i++){
 				
-				//edit order json
-						//items from previous order
-						$line_items = $request['line_items'];
-						
+			//edit order json
+				//items from previous order
+				$line_items = $request['line_items'];
+				$gateway = $request['gateway']; //check with requirements
+				$total_price= $request['total_price'];					
+				$subtotal_price= $request['subtotal_price'];					
+				$total_weight= $request['total_weight'];				
+				$total_tax= $request['total_tax'];					
+				$taxes_included= $request['taxes_included'];				
+				$currency= $request['currency'];	
+				$total_discounts = $request['total_discounts'];
+				$total_line_items_price = $request['total_line_items_price'];
+				$total_price_usd = $request['total_price_usd'];	
+				
+				//calculate delivery date //add after test
+				$_streamthing_delivery_date_value = date('Y-m-d', strtotime($_streamthing_delivery_date_value . " + 7 day"));
+				$_streamthing_delivery_date_value = date('F jS, Y', strtotime($_streamthing_delivery_date_value));
+
 			}//end of for loop
 				
 		}// end of if
