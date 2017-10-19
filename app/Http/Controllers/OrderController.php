@@ -22,7 +22,8 @@ public function reorder($id){
 	$type = gettype($RequestResponse);
 	file_put_contents("php://stderr", "$type\n");	
 //get order elements
-	$id_val = (string)($RequestResponse['order']);
+	
+	$id_val = json_decode((string)$RequestResponse->getBody(),true);
 	
 	//$note_attribute_count = (int)count($RequestResponse['note_attributes']);
 	file_put_contents("php://stderr", "$id_val\n");	
