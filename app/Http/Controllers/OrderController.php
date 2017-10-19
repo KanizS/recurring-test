@@ -33,7 +33,9 @@ public function reorder($id){
 	//if previously no recurring orders created
 	if($verify){
 		file_put_contents("php://stderr", "inside verify\n");
-		//$this -> edit_root_order($id);
+		
+		//add Created_Recurring_Orders tag to root order to prevent callbacks
+		$this -> edit_root_order($id);
 
 		//get note attributes count
 		$note_attribute_count = (int)count($request['note_attributes']);
@@ -196,7 +198,7 @@ public function reorder($id){
    //create client and post data
 	$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders.json');
 	$client = new Client();
-	//$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
+	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
 	
 }
 
