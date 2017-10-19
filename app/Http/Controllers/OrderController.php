@@ -16,14 +16,36 @@ public function reorder($id){
 	$client = new Client();
 	$RequestResponse = $client->get($url);
 	$RequestResponse=$RequestResponse->getBody()->getContents();
-	
-//get order elements
 	$json_response = json_decode($RequestResponse,true);
-	$id_val = (int)$json_response['order']['id'];
-	
+		
 	//get note attributes count
 	$note_attribute_count = (int)count($json_response['order']['note_attributes']);
-	file_put_contents("php://stderr", "$note_attribute_count\n");
+	
+	//get inside order element of json
+	$request = $json_response['order'];
+	$note = (int)count($request['note_attributes']);
+	file_put_contents("php://stderr", "$note\n");	
+	
+	//initialize note atributes
+	$_subscribe_order_name ='';
+	$_include_gift_wrapping_name='';
+	$_include_gift_wrapping_value='';
+	$_subscribe_order_value='';
+	$_recurring_duration_months_name='';
+	$_recurring_duration_months_value=0;
+	$_streamthing_delivery_date_name='';
+	$_streamthing_delivery_date_value='';
+	$_area_name='';
+	$_area_value='';
+	$_packing_specification_name='';
+	$_packing_specification_value='';
+	$_tag_name='';
+	
+	//prevent placing recurring orders more than once
+	//edit the root order to place tag
+	//following process if only tag not in order
+	
+	//traverse through note attributes
 	
 	file_put_contents("php://stderr", "done\n");	
 	
