@@ -42,16 +42,22 @@ public function reorder($id){
 	//prevent placing recurring orders more than once
 	//edit the root order to place tag
 	//following process if only tag not in order
+	$res = $client->request('PUT', $url , [ 
+		'form_params' => 
+				[
+					'order' => [
+					'id' => $id,
+					'tags' => ["Created Recurring Orders"]  
+					]
+				 ]
+		 ]
+	   );
 	
 	//traverse through note attributes
 	for($r=0;$r<$note_attribute_count;$r++){
 		$_name = $request['note_attributes'][$r]['name'];
 		
 		switch ($_name){
-				 case 'include_gift_wrapping':
-					$_include_gift_wrapping_name = $_name;
-					$_include_gift_wrapping_value = (string)$request['note_attributes'][$r]['value'];
-					break;
 				 case 'subscribe_order':
 					$_subscribe_order_name = $_name;
 					$_subscribe_order_value =  (string)$request['note_attributes'][$r]['value'];
