@@ -20,7 +20,17 @@ public function reorder($id){
 	
 	//get inside order element of json
 	$request = $json_response['order'];
-		
+	
+	//prevent placing recurring orders more than once
+	//edit the root order to place tag
+	//following process if only tag not in order
+	$order_tags = $request['tags'];
+	$order_tags_count = (int)count($order_tags);
+	file_put_contents("php://stderr", "$order_tags_count\n");
+	file_put_contents("php://stderr", "$order_tags\n");
+	
+	//$this -> edit_root_order($id);
+	
 	//get note attributes count
 	$note_attribute_count = (int)count($request['note_attributes']);
 		
@@ -38,21 +48,6 @@ public function reorder($id){
 	$_packing_specification_name='';
 	$_packing_specification_value='';
 	$_tag_name='';
-	
-	//prevent placing recurring orders more than once
-	//edit the root order to place tag
-	//following process if only tag not in order
-// 	$res = $client->request('PUT', $url , [ 
-// 		'form_params' => 
-// 				[
-// 					'order' => [
-// 					'id' => $id,
-// 					'tags' => ["Created Recurring Orders"]  
-// 					]
-// 				 ]
-// 		 ]
-// 	   );
-	$this -> edit_root_order($id);
 	
 	//traverse through note attributes
 	for($r=0;$r<$note_attribute_count;$r++){
