@@ -16,17 +16,17 @@ public function reorder($id){
 	$client = new Client();
 	$RequestResponse = $client->get($url);
 	$RequestResponse=$RequestResponse->getBody()->getContents();
-	//$RequestResponse= json_decode($RequestResponse->getBody(), true);
-	file_put_contents("php://stderr", "$RequestResponse\n");
-	file_put_contents("php://stderr", "done\n");	
-	$type = gettype($RequestResponse);
-	file_put_contents("php://stderr", "$type\n");	
+	
 //get order elements
+	$json_response = json_decode($RequestResponse,true);
+	$id_val = (int)$json_response['order']['id'];
 	
-	$id_val = json_decode($RequestResponse,true);
+	//get note attributes count
+	$note_attribute_count = (int)count($json_response['order']['note_attributes']);
+	file_put_contents("php://stderr", "$note_attribute_count\n");
 	
-	$note_attribute_count = (int)$id_val['order']['id'];
-	file_put_contents("php://stderr", "$note_attribute_count\n");	
+	file_put_contents("php://stderr", "done\n");	
+	
 }
 	
  private function set_reorder($order){
