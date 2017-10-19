@@ -196,10 +196,11 @@ public function reorder($id){
 	
  private function set_reorder($order){
    //create client and post data
+	file_put_contents("php://stderr", "set_reorder function\n");
 	$url =(string)('https://919dbb1d353c767687732dccb73b3b6c:fba6ef04320dec52cf543b6b266f2b9e@saaraketha-organics.myshopify.com/admin/orders.json');
 	$client = new Client();
 	$RequestResponse = $client->post($url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order]);
-	
+	file_put_contents("php://stderr", "end of set_reorder function\n");
 }
 
 private function edit_root_order($root_id){
