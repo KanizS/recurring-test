@@ -22,10 +22,10 @@ public function reorder($id){
 	$type = gettype($RequestResponse);
 	file_put_contents("php://stderr", "$type\n");	
 //get order elements
-	$id_val = (int)($RequestResponse['order']['id']);
+	$id_val = (string)($RequestResponse['order']);
 	
 	//$note_attribute_count = (int)count($RequestResponse['note_attributes']);
-	//file_put_contents("php://stderr", "$id_val\n");	
+	file_put_contents("php://stderr", "$id_val\n");	
 }
 	
  private function set_reorder($order){
