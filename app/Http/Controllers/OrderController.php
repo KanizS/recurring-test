@@ -21,8 +21,9 @@ public function reorder($id){
 	file_put_contents("php://stderr", "done\n");	
 	
 //get order elements
-	$note_attribute_count = (int)count($RequestResponse['note_attributes']);
-	file_put_contents("php://stderr", "$note_attribute_count\n");	
+	$id_val = (int)($RequestResponse['order']['id']);
+	//$note_attribute_count = (int)count($RequestResponse['note_attributes']);
+	file_put_contents("php://stderr", "$id_val\n");	
 }
 	
  private function set_reorder($order){
