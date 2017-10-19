@@ -28,7 +28,8 @@ public function reorder($id){
 	$order_tags_count = (int)count($order_tags);
 	file_put_contents("php://stderr", "$order_tags_count\n");
 	file_put_contents("php://stderr", "$order_tags\n");
-	
+	$res = $this -> verify_request($request);
+	file_put_contents("php://stderr", "$res\n");
 	//$this -> edit_root_order($id);
 	
 	//get note attributes count
@@ -207,6 +208,11 @@ private function edit_root_order($root_id){
 	file_put_contents("php://stderr", "before url\n");
 	$RequestResponse = $client->put($edit_url, ['headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'], 'body' => $order_data]);
 	file_put_contents("php://stderr", "end of function\n");
+}
+	
+private function verify_request($request_data){
+
+	return true;
 }
 	
 }
